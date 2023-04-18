@@ -2,12 +2,26 @@ export class Julia {
   private text: string;
 
   constructor(text: string) {
-    this.text = text;
+    this.text = text.toLowerCase() as string;
   }
 
   getMessageType(): string | undefined {
     const types = new Map<string, Set<string>>([
-      ["question", new Set(["what", "when", "why", "how", "who"])],
+      [
+        "question",
+        new Set([
+          "what",
+          "when",
+          "why",
+          "how",
+          "who",
+          "?",
+          "wanna",
+          "let's get a",
+          "do you",
+          "can you",
+        ]),
+      ],
       ["greeting", new Set(["hi", "hello", "hey"])],
       ["goodbye", new Set(["bye", "see you", "take care"])],
       ["apology", new Set(["sorry", "my bad", "excuse me"])],
@@ -20,7 +34,6 @@ export class Julia {
         new Set(["breaking news", "announcement", "news flash"]),
       ],
       ["opinion", new Set(["i think", "in my opinion", "personally"])],
-      ["question", new Set(["?", "wanna", "let's get a", "do you", "can you"])]
     ]);
 
     // Check if any of the phrases match the message types
